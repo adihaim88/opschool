@@ -4,7 +4,7 @@
 
 sudo sed -i -e "s/#DNS=/DNS=192.168.1.1/g"  /etc/systemd/resolved.conf
 sudo sed -i -e "s/#FallbackDNS=/FallbackDNS=192.168.60.10 192.168.1.1/g"  /etc/systemd/resolved.conf
-
+sudo sed -i -e "172s/None/All/g" /etc/apache2/apache2.conf
 sudo shutdown -h now
 
 
