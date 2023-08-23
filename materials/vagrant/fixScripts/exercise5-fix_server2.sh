@@ -1,2 +1,4 @@
 #!/bin/bash
-#add fix to exercise5-server2 here
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
