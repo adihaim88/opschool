@@ -1,5 +1,5 @@
 #!/bin/bash
 #add fix to exercise5-server1 here
-
-
-find out this link: https://www.makeuseof.com/connect-without-password-copy-ssh-key-server/
+ssh-keygen -t rsa -b 4096
+eval "$(ssh-agent -s)"
+ssh-add  ./id_rsa
