@@ -1,43 +1,44 @@
 #!/bin/bash
 
+# Check if at least 3 arguments are provided
 if [ $# -lt 3 ]; then
-    echo "Usage: $0 file1 file2 ... destination_folder"
+    echo "ERROR:  3 arguments at least should be provided"
     exit 1
 fi
 
-#echo "FILES: ${@}"
-FILES="$@"
-#echo "---------------------------"
-#echo "LAST: ${@: -1}"
-LAST="${@: -1}"
-#echo "--------------------------"
-hostname=$(hostname)
-# Print the hostname
-echo "Hostname: $hostname"
+# Get the last argument as the destination folder on the remote server
+destination="${!#}"
 
-if [ "$hostname" = "server1" ];then 
-        secondhostname=server2
+# Remove the last argument from the list of arguments
+files=("${@:1:$#-1}")
+
+# local server information
+local_server=$(hostname)
+
+if [ "$local_server" = "server1" ];then 
+        remote_server=server2
+         echo "remote_server: $remote_server"
         else
-        secondhostname=server1
-        echo "secondhostname: $secondhostname"
+        remote_server=server1
+        echo "remote_server: $remote_server"
 fi
 
-        size=0
-        Total=0
-        for f in $FILES
-        do
-                if [ "$f" = "$LAST" ];then
-                        echo "we got to the last argument"
-                        break
 
-                fi
-                echo "sudo cp $f $LAST "
-                echo "----------------------------"
-                sudo cp  $f $LAST
-                echo "echo : $(stat -c %s $f)"
-                size=$(stat -c %s $f)
-                echo $size>>calc.csv
-        done
 
-        awk '{Total=Total+$1} END{print "Total is: " Total}' calc.csv
+# Loop through the files and copy them to the remote server
+total_bytes=0
+for file in "${files[@]}"; do
+    # Get the file size in bytes
+    file_size=$(stat -c %s "$file")
+    
+    scp "$file" "vagrant@$remote_server:$destination"
+    
+   
+    total_bytes=$((total_bytes + file_size))
+done
+
+# Print the total number of bytes copied
+echo "$total_bytes"
+
+
 
