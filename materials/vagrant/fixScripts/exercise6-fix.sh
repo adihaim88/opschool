@@ -23,6 +23,12 @@ if [ "$local_server" = "server1" ];then
         echo "remote_server: $remote_server"
 fi
 
+# Use sudo if the script is run as root
+if [ "$(id -u)" -eq 0 ]; then
+    scp_cmd="sudo scp"
+else
+    scp_cmd="scp"
+fi
 
 
 # Loop through the files and copy them to the remote server
@@ -31,7 +37,7 @@ for file in "${files[@]}"; do
     # Get the file size in bytes
     file_size=$(stat -c %s "$file")
     
-    scp "$file" "vagrant@$remote_server:$destination"
+    sudo scp "$file" "vagrant@$remote_server:$destination"
     
    
     total_bytes=$((total_bytes + file_size))
