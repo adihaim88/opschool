@@ -1,10 +1,26 @@
 #!/bin/bash
+
+if [ $# -lt 3 ]; then
+    echo "Usage: $0 file1 file2 ... destination_folder"
+    exit 1
+fi
+
 #echo "FILES: ${@}"
 FILES="$@"
 #echo "---------------------------"
 #echo "LAST: ${@: -1}"
 LAST="${@: -1}"
 #echo "--------------------------"
+hostname=$(hostname)
+# Print the hostname
+echo "Hostname: $hostname"
+
+if [ "$hostname" = "server1" ];then 
+        secondhostname=server2
+        else
+        secondhostname=server1
+        echo "secondhostname: $secondhostname"
+fi
 
         size=0
         Total=0
