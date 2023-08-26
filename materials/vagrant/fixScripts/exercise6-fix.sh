@@ -37,7 +37,7 @@ for file in "${files[@]}"; do
     # Get the file size in bytes
     file_size=$(stat -c %s "$file")
     
-    sudo scp "$file" "vagrant@$remote_server:$destination"
+     $scp_cmd scp "$file" "vagrant@$remote_server:$destination"
     
    
     total_bytes=$((total_bytes + file_size))
