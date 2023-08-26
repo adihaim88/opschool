@@ -1,5 +1,4 @@
 #!/bin/bash
-#add fix to exercise1 here
 
 
 sudo sed -i -e "s/#DNS=/DNS=192.168.1.1/g"  /etc/systemd/resolved.conf
