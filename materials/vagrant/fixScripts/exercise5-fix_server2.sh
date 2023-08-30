@@ -16,10 +16,14 @@ sudo sed -i -e "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/g" /etc/ssh
 sudo sed -i -e "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" /etc/ssh/sshd_config
 sudo service ssh restart
 
-echo -e "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
+#echo -e "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
+server1_public_key=ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa vagrant@192.168.60.10 'cat ~/.ssh/id_rsa.pub'
+sudo echo "$server1_public_key" >> ~/.ssh/authorized_keys
+
+echo "Public key added to authorized_keys on server2."
 
 
-sudo apt update
-sudo apt-get install sshpass
+#sudo apt update
+#sudo apt-get install sshpass
 
-sshpass -p 'vagrant' ssh-copy-id vagrant@server1
+#sshpass -p 'vagrant' ssh-copy-id vagrant@server1
