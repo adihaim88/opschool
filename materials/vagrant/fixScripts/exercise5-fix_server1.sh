@@ -18,7 +18,7 @@ sudo service ssh restart
 echo -e "Host server2\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
 
 
-sudo apt-get install sshpass
-sshpass -p 'vagrant' ssh-copy-id vagrant@server2
+#sudo apt-get install sshpass
+#sshpass -p 'vagrant' ssh-copy-id vagrant@server2
 
 
