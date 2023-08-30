@@ -11,7 +11,7 @@ eval "$(ssh-agent -s)"
 ssh-add  ~/.ssh/id_rsa
 
 #sudo sed -i -e "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/g" /etc/ssh/sshd_config
-sudo sed -i -e "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" /etc/ssh/sshd_config
+sudo sed -i -e "s/#PasswordAuthentication/PasswordAuthentication/g" /etc/ssh/sshd_config
 sudo service ssh restart
 
 
