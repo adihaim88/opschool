@@ -6,5 +6,7 @@ chmod 600 ~/.ssh/authorized_keys
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
 eval "$(ssh-agent -s)"
 ssh-add  ~/.ssh/id_rsa
-ssh-copy-id -i ~/.ssh/id_rsa.pub "vagrant@server2"
+sudo apt-get install sshpass
+sshpass -p 'vagrant' ssh-copy-id vagrant@server2
+
 
