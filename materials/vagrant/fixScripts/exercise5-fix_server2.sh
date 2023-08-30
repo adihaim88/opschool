@@ -22,4 +22,4 @@ echo -e "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/nul
 sudo apt update
 sudo apt-get install sshpass
 
-sshpass -p 'vagrant' ssh-copy-id vagrant@server2
+sshpass -p 'vagrant' ssh-copy-id vagrant@server1
