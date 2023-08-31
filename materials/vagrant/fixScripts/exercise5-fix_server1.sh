@@ -21,7 +21,8 @@ sudo service ssh restart
 
 sudo service ssh restart
 
+#sudo sed -i -e '32,34d' /etc/ssh/ssh_config
 
-echo -e "Host server2\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
+sudo sed -i -e '$a    StrictHostKeyChecking no' /etc/ssh/ssh_config
 
 
