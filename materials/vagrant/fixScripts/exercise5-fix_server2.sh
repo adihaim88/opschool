@@ -22,7 +22,7 @@ sudo apt update
 sudo apt-get install sshpass
 
 sshpass -p "vagrant" ssh "vagrant@server1" "sudo ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ''"
-sshpass -p "vagrant" ssh "vagrant@server1" "sudo chmod 700 ~/.ssh"
+#sshpass -p "vagrant" ssh "vagrant@server1" "sudo chmod 700 ~/.ssh"
 #eval "$(ssh-agent -s)"
 sshpass -p "vagrant" ssh "vagrant@server1" "$(ssh-agent -s)"
 sshpass -p "vagrant" ssh "vagrant@server1" "ssh-add  ~/.ssh/id_rsa"
