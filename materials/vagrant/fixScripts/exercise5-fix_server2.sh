@@ -16,8 +16,6 @@ sudo -u vagrant ssh-keygen -t rsa -b 4096 -f /home/vagrant/.ssh/id_rsa -N ""
 eval "$(ssh-agent -s)"
 ssh-add  /home/vagrant/.ssh/id_rsa
 
-#sudo echo "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> /etc/ssh/ssh_config
-#sudo chmod 600 /etc/ssh/ssh_config
 sudo sed -i 's/^#\( *StrictHostKeyChecking\) ask/\1 no/' /etc/ssh/ssh_config
 sudo chmod 400 /home/vagrant/.ssh/config 
 
@@ -30,9 +28,3 @@ sshpass -p "vagrant" ssh-copy-id -i /home/vagrant/.ssh/id_rsa.pub -o StrictHostK
 
 #copy key from server1 to server2
 ssh -o StrictHostKeyChecking=no -i /home/vagrant/.ssh/id_rsa vagrant@192.168.60.10 'cat /home/vagrant/.ssh/id_rsa.pub' >> /home/vagrant/.ssh/authorized_keys
-
-
-
-
-
-
