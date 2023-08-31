@@ -15,7 +15,7 @@ files=("${@:1:$#-1}")
 # local server information
 local_server=$(hostname)
 
-if [ "$local_server" = "server1" ];then 
+if [ "$local_server" = "server1" ];then
         remote_server=server2
          echo "remote_server: $remote_server"
         else
