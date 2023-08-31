@@ -18,6 +18,3 @@ sudo sed -i -e "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/g" /etc/ssh
 sudo sed -i -e "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" /etc/ssh/sshd_config
 sudo service ssh restart
 
-#sudo sed -i -e '$a    StrictHostKeyChecking no' /etc/ssh/ssh_config
-
-
