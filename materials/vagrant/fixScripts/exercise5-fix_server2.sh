@@ -12,8 +12,7 @@ sudo sed -i -e "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/g" /etc/ssh
 sudo sed -i -e "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" /etc/ssh/sshd_config
 sudo service ssh restart
 
-su - vagrant
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+sudo -u vagrant ssh-keygen -t rsa -b 4096 -f /home/vagrant/.ssh/id_rsa -N ""
 eval "$(ssh-agent -s)"
 ssh-add  ~/.ssh/id_rsa
 
