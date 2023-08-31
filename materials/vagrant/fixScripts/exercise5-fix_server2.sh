@@ -16,7 +16,8 @@ sudo -u vagrant ssh-keygen -t rsa -b 4096 -f /home/vagrant/.ssh/id_rsa -N ""
 eval "$(ssh-agent -s)"
 ssh-add  ~/.ssh/id_rsa
 
-echo -e "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
+echo -e "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> /etc/ssh/ssh_config
+sudo chmod 600 /etc/ssh/ssh_config
 
 sudo apt update
 sudo apt-get install sshpass
