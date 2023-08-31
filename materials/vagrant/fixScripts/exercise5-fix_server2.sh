@@ -21,14 +21,21 @@ echo -e "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/nul
 sudo apt update
 sudo apt-get install sshpass
 
-sshpass -p "vagrant" ssh "ssh-copy-id -o StrictHostKeyChecking=no vagrant@server1"
-
 sshpass -p "vagrant" ssh "vagrant@server1" "sudo ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ''"
 sshpass -p "vagrant" ssh "vagrant@server1" "sudo chmod 700 ~/.ssh"
 #eval "$(ssh-agent -s)"
 sshpass -p "vagrant" ssh "vagrant@server1" "$(ssh-agent -s)"
 sshpass -p "vagrant" ssh "vagrant@server1" "ssh-add  ~/.ssh/id_rsa"
-sshpass -p "vagrant" ssh "vagrant@server1" "echo '$(sudo cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
+#sshpass -p "vagrant" ssh "vagrant@server1" "echo '$(sudo cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
+
+
+#copy key from server to server1
+sshpass -p "vagrant" ssh "ssh-copy-id -o StrictHostKeyChecking=no vagrant@server1"
+
+#copy key from server1 to server2
+server1_public_key=ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa vagrant@192.168.60.10 'cat ~/.ssh/id_rsa.pub'
+sudo echo "$server1_public_key" >> ~/.ssh/authorized_keys
+
 
 
 
