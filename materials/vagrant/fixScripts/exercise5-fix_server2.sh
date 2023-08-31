@@ -23,7 +23,7 @@ sudo apt update
 sudo apt-get install sshpass
 
 
-#copy key from server to server1
+#copy key from server2 to server1
 sshpass -p "vagrant" ssh-copy-id -i /home/vagrant/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vagrant@server1
 
 #copy key from server1 to server2
