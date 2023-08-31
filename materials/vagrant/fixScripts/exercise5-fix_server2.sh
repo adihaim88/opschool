@@ -30,11 +30,10 @@ sudo apt-get install sshpass
 
 
 #copy key from server to server1
-sshpass -p "vagrant" ssh "ssh-copy-id -o StrictHostKeyChecking=no vagrant@server1"
-
+sshpass -p "vagrant" ssh-copy-id -i /home/vagrant/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vagrant@server1
 #copy key from server1 to server2
-server1_public_key=ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa vagrant@192.168.60.10 'cat ~/.ssh/id_rsa.pub'
-sudo echo "$server1_public_key" >> ~/.ssh/authorized_keys
+server1_public_key=ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa vagrant@192.168.60.10 'cat /home/vagrant/.ssh/id_rsa.pub'
+sudo echo "$server1_public_key" >> /home/vagrant/.ssh/authorized_keys
 
 
 
