@@ -17,7 +17,7 @@ sshpass -p "vagrant" ssh "vagrant@server1" "sudo chmod 700 ~/.ssh"
 #eval "$(ssh-agent -s)"
 sshpass -p "vagrant" ssh "vagrant@server1" "$(ssh-agent -s)"
 sshpass -p "vagrant" ssh "vagrant@server1" "ssh-add  ~/.ssh/id_rsa"
-sshpass -p "vagrant" ssh "vagrant@server1" "echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
+sshpass -p "vagrant" ssh "vagrant@server1" "echo '$(sudo cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
 
 
 
