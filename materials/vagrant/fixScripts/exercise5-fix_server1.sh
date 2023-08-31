@@ -2,7 +2,9 @@
 echo "--------------------exercise5-server1------------------------"
 sudo  chmod 777 /etc/hosts
 sudo echo "192.168.60.11 server2" >> /etc/hosts
-chmod 600 ~/.ssh/authorized_keys
+sudo chmod 600 ~/.ssh/authorized_keys
+sudo chmod 700 ~/.ssh
+
 
 #sudo ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
 #eval "$(ssh-agent -s)"
