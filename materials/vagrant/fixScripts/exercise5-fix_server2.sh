@@ -7,6 +7,9 @@ chmod 600 ~/.ssh/authorized_keys
 
 sudo  chmod 777 /etc/hosts
 sudo echo "192.168.60.10 server1" >> /etc/hosts
+
+sudo apt update
+sudo apt-get install sshpass
 sshpass -p "vagrant" ssh "vagrant@server1" "echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
 
 
