@@ -18,6 +18,8 @@ ssh-add  /home/vagrant/.ssh/id_rsa
 
 #sudo echo "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> /etc/ssh/ssh_config
 #sudo chmod 600 /etc/ssh/ssh_config
+echo -e "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> /home/vagrant/.ssh/config
+sudo chmod 400 /home/vagrant/.ssh/config 
 
 sudo apt update
 sudo apt-get install sshpass
