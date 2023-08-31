@@ -10,7 +10,11 @@ sudo -u vagrant ssh-keygen -t rsa -b 4096 -f /home/vagrant/.ssh/id_rsa -N ""
 eval "$(ssh-agent -s)"
 ssh-add  /home/vagrant/.ssh/id_rsa
 
-echo -e "Host server2\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> /home/vagrant/.ssh/config
+#echo -e "Host server2\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> /home/vagrant/.ssh/config
+sudo sed -i -e "s/#   StrictHostKeyChecking ask/   StrictHostKeyChecking no/g" /etc/ssh/sshd_config
+
+#   StrictHostKeyChecking ask
+
 sudo chmod 400 /home/vagrant/.ssh/config 
 
 sudo sed -i -e "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
