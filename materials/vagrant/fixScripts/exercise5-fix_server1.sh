@@ -10,6 +10,10 @@ sudo chmod 700 ~/.ssh
 #eval "$(ssh-agent -s)"
 #ssh-add  ~/.ssh/id_rsa
 
+sudo -u vagrant ssh-keygen -t rsa -b 4096 -f /home/vagrant/.ssh/id_rsa -N ""
+eval "$(ssh-agent -s)"
+ssh-add  /home/vagrant/.ssh/id_rsa
+
 sudo sed -i -e "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 
 sudo service ssh restart
