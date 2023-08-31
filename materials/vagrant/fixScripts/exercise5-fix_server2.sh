@@ -14,7 +14,7 @@ sudo service ssh restart
 
 sudo -u vagrant ssh-keygen -t rsa -b 4096 -f /home/vagrant/.ssh/id_rsa -N ""
 eval "$(ssh-agent -s)"
-ssh-add  ~/.ssh/id_rsa
+ssh-add  /home/vagrant/.ssh/id_rsa
 
 sudo echo "Host server1\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> /etc/ssh/ssh_config
 sudo chmod 600 /etc/ssh/ssh_config
@@ -22,18 +22,13 @@ sudo chmod 600 /etc/ssh/ssh_config
 sudo apt update
 sudo apt-get install sshpass
 
-#sshpass -p "vagrant" ssh "vagrant@server1" "sudo ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ''"
-#sshpass -p "vagrant" ssh "vagrant@server1" "sudo chmod 700 ~/.ssh"
-#eval "$(ssh-agent -s)"
-#sshpass -p "vagrant" ssh "vagrant@server1" "$(ssh-agent -s)"
-#sshpass -p "vagrant" ssh "vagrant@server1" "ssh-add  ~/.ssh/id_rsa"
-#sshpass -p "vagrant" ssh "vagrant@server1" "echo '$(sudo cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
-
 
 #copy key from server to server1
 sshpass -p "vagrant" ssh-copy-id -i /home/vagrant/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vagrant@server1
+
 #copy key from server1 to server2
 server1_public_key=ssh -o StrictHostKeyChecking=no -i /home/vagrant/.ssh/id_rsa vagrant@192.168.60.10 'cat /home/vagrant/.ssh/id_rsa.pub'
+
 echo "This is the server1_public_key : $server1_public_key"
 sudo echo "$server1_public_key" >> /home/vagrant/.ssh/authorized_keys
 
