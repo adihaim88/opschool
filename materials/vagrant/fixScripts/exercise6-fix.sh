@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Check if at least 3 arguments are provided
 if [ $# -lt 3 ]; then
@@ -43,6 +43,3 @@ done
 
 # Print the total number of bytes copied
 echo "$total_bytes"
-
-
-
