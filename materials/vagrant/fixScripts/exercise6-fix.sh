@@ -36,10 +36,8 @@ total_bytes=0
 for file in "${files[@]}"; do
     # Get the file size in bytes
     file_size=$(stat -c %s "$file")
-    
-     $scp_cmd scp "$file" "vagrant@$remote_server:$destination"
-    
-   
+    echo " $scp_cmd $file vagrant@$remote_server:$destination"
+    $scp_cmd "$file" "vagrant@$remote_server:$destination"
     total_bytes=$((total_bytes + file_size))
 done
 
